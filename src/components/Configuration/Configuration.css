@@ -1,0 +1,1677 @@
+/* ===== CONFIGURATION SHARED STYLES ===== */
+
+/* ═══════════════════════════════════════════════════════════
+   GENERAL SECTION  (§1.7.1 Company & Farm — top of page)
+   ═══════════════════════════════════════════════════════════ */
+
+.gen-section {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* Header row */
+.gen-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.gen-section__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin: 0;
+}
+
+.gen-section__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Pink gradient Edit button */
+.gen-edit-btn.ant-btn {
+  background: linear-gradient(135deg, #ec4899, #9333ea) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-full) !important;
+  padding: 0 var(--space-5) !important;
+  height: 36px !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35) !important;
+}
+
+.gen-edit-btn.ant-btn:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Two inner info cards */
+.gen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.gen-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Icon + title row inside each inner card */
+.gen-card__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.gen-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.gen-card__icon--company {
+  background: linear-gradient(135deg, #ec4899, #9333ea);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+}
+
+.gen-card__icon--contact {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+}
+
+.gen-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-white);
+}
+
+/* Field rows inside inner card */
+.gen-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.gen-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.gen-field__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Styled display box (view mode) */
+.gen-field__display {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 9px 14px;
+  font-size: 14px;
+  color: var(--text-primary);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* Input override (edit mode) — dark bg + accent border like the search inputs */
+.gen-field__input.ant-input-affix-wrapper,
+.gen-field__input.ant-input {
+  background: var(--bg-base) !important;
+  border: 1.5px solid var(--border) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-md) !important;
+  height: 40px !important;
+  font-size: 14px !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+}
+
+.gen-field__input.ant-input-affix-wrapper:focus-within,
+.gen-field__input.ant-input:focus {
+  border-color: var(--accent-border) !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+}
+
+/* Note */
+.gen-section__note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 700px) {
+  .gen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FUNCTION GROUP CARDS  (§1.7.3)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── UNIFIED SEARCH INPUT (used across all tabs) ───────────────────────── */
+/* --search-border and --search-dim are injected via inline style per tab    */
+.cfg-search-input.ant-input-affix-wrapper {
+  flex: 1 !important;
+  background: var(--bg-base) !important;
+  border: 1.5px solid var(--search-border, var(--accent-border)) !important;
+  border-radius: var(--radius-full) !important;
+  height: 44px !important;
+  font-size: 14px !important;
+  color: var(--text-primary) !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+}
+
+.cfg-search-input.ant-input-affix-wrapper:focus-within {
+  border-color: var(--search-border, var(--accent-border)) !important;
+  box-shadow: 0 0 0 3px var(--search-dim, var(--accent-dim)) !important;
+}
+
+.cfg-search-input .ant-input {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.cfg-search-input .ant-input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.cfg-search-input .anticon {
+  color: var(--text-muted) !important;
+}
+
+/* ─── TOOLBAR SHARED LAYOUT ─────────────────────────────────────────────── */
+.fg-toolbar,
+.role-toolbar,
+.area-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+/* Purple gradient Add Group button — matches dashboard summary-card--purple */
+.fg-add-btn.ant-btn {
+  background: linear-gradient(135deg, #7c3aed, #4338ca) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-full) !important;
+  padding: 0 var(--space-5) !important;
+  height: 44px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.fg-add-btn.ant-btn:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Card grid */
+.fg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.fg-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.fg-card:hover {
+  border-color: rgba(124, 58, 237, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+}
+
+/* Card top row */
+.fg-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+/* Function Group card icon — matches dashboard purple */
+.fg-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #7c3aed, #4338ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
+}
+
+.fg-card__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fg-card__name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fg-card__desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.fg-card__menu {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+/* Card footer */
+.fg-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.fg-card__members {
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Status badge — clickable pill */
+.fg-card__status-badge {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  padding: 3px 12px;
+  transition: opacity 150ms ease;
+}
+
+.fg-card__status-badge--active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.fg-card__status-badge--inactive {
+  background: rgba(100, 116, 139, 0.15);
+  color: var(--text-muted);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+.fg-card__status-badge:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 640px) {
+  .fg-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROLE TABLE  (Farm Masters / Admins / Workers)
+   ═══════════════════════════════════════════════════════════ */
+
+/* (search + toolbar shared above as .role-toolbar) */
+
+/* Orange gradient Add Area button — matches dashboard summary-card--orange */
+.area-add-btn.ant-btn {
+  background: linear-gradient(135deg, #f97316, #dc2626) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-full) !important;
+  padding: 0 var(--space-5) !important;
+  height: 44px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.area-add-btn.ant-btn:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Orange location-pin row icon — matches dashboard orange */
+.area-row-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(249, 115, 22, 0.45);
+}
+
+/* Teal worker count badge */
+.area-worker-badge {
+  display: inline-block;
+  background: rgba(6, 182, 212, 0.15);
+  color: #06b6d4;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: var(--radius-full);
+  padding: 2px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 30px;
+  text-align: center;
+}
+
+/* Area code badge */
+.area-code-badge {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
+  letter-spacing: 0.4px;
+}
+
+/* Add button — pink gradient */
+.role-add-btn.ant-btn {
+  background: linear-gradient(135deg, #ec4899, #9333ea) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-radius: var(--radius-full) !important;
+  padding: 0 var(--space-5) !important;
+  height: 44px !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.4) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.role-add-btn.ant-btn:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Table wrapper */
+.role-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+/* Header */
+.role-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.role-table th {
+  padding: 12px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: left;
+  white-space: nowrap;
+  background: var(--bg-card);
+}
+
+/* Rows */
+.role-table tbody tr {
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 150ms ease;
+}
+
+.role-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.role-table tbody tr:hover {
+  background: var(--bg-hover);
+}
+
+.role-table__row--selected {
+  background: rgba(147, 51, 234, 0.06) !important;
+}
+
+.role-table td {
+  padding: 12px 14px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Avatar */
+.role-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+/* Name + ID cell */
+.role-name-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.role-name-cell__name {
+  font-weight: 600;
+  color: var(--text-white);
+  font-size: 13px;
+}
+
+.role-name-cell__id {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
+}
+
+/* Contact text */
+.role-contact {
+  color: var(--text-secondary) !important;
+}
+
+/* Status badges */
+.role-status {
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  padding: 3px 12px;
+  letter-spacing: 0.2px;
+  display: inline-block;
+}
+
+.role-status--active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.role-status--inactive {
+  background: rgba(100, 116, 139, 0.15);
+  color: var(--text-muted);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+}
+
+/* Empty state */
+.role-table__empty {
+  text-align: center;
+  padding: 40px 20px !important;
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+}
+
+/* Bulk action bar */
+.role-bulk-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(147, 51, 234, 0.08);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Row actions */
+.cfg-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* 2-col form grid used in modals */
+.cfg-form-grid--2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* ── Panel card ──────────────────────────────────────────── */
+.cfg-panel {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  position: relative;
+  animation: fadeIn 0.25s ease both;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Decorative bottom accent line on hover */
+.cfg-panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.cfg-panel:hover::after {
+  opacity: 1;
+}
+
+/* ── Panel header ────────────────────────────────────────── */
+.cfg-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.cfg-panel__kicker {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 600;
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: var(--space-1);
+}
+
+.cfg-panel__header h3 {
+  color: var(--text-white);
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 2px 0 var(--space-2);
+}
+
+.cfg-panel__header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.cfg-panel__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.cfg-btn-primary,
+.cfg-btn-secondary {
+  height: 38px;
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+
+.cfg-btn-primary {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 18px rgba(51, 89, 127, 0.25) !important;
+  transition: background 200ms ease, box-shadow 200ms ease !important;
+}
+
+.cfg-btn-primary:hover {
+  background: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+  box-shadow: 0 0 22px rgba(51, 89, 127, 0.45) !important;
+}
+
+.cfg-btn-secondary {
+  background: var(--bg-input) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease !important;
+}
+
+.cfg-btn-secondary:hover {
+  background: var(--primary-dim) !important;
+  border-color: var(--primary) !important;
+  color: var(--text-white) !important;
+}
+
+/* ── Form grids ──────────────────────────────────────────── */
+.cfg-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.cfg-form-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cfg-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.cfg-field>span {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* All form field inputs — dark bg, permanent accent border (matches mockup) */
+.cfg-field .ant-input-affix-wrapper,
+.cfg-field .ant-input,
+.cfg-modal__form .ant-input-affix-wrapper,
+.cfg-modal__form .ant-input {
+  background: var(--bg-base) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+  height: 40px !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+}
+
+.cfg-field .ant-input-affix-wrapper:focus-within,
+.cfg-field .ant-input:focus,
+.cfg-modal__form .ant-input-affix-wrapper:focus-within,
+.cfg-modal__form .ant-input:focus {
+  border-color: var(--accent-border) !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+}
+
+/* Ant Select in cfg-field */
+.cfg-field .ant-select-selector,
+.cfg-modal__form .ant-select-selector {
+  background: var(--bg-base) !important;
+  border: 1.5px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+  min-height: 40px !important;
+  align-items: center !important;
+}
+
+.cfg-field .ant-select:not(.ant-select-disabled):hover .ant-select-selector,
+.cfg-modal__form .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: var(--accent-border) !important;
+}
+
+.cfg-field .ant-select-focused .ant-select-selector,
+.cfg-modal__form .ant-select-focused .ant-select-selector {
+  border-color: var(--accent-border) !important;
+  box-shadow: 0 0 0 3px var(--accent-dim) !important;
+}
+
+/* Input prefix icons */
+.cfg-field .anticon,
+.cfg-modal__form .anticon {
+  color: var(--text-muted) !important;
+}
+
+/* Placeholder text */
+.cfg-field .ant-input::placeholder,
+.cfg-modal__form .ant-input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.cfg-field__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+}
+
+.cfg-field__hint--valid {
+  color: #22c55e;
+}
+
+/* ── Notes / Info banners ────────────────────────────────── */
+.cfg-note,
+.cfg-fast-note {
+  border: 1px solid var(--primary-border);
+  border-radius: var(--radius-md);
+  background: var(--primary-dim);
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: var(--space-3) var(--space-4);
+}
+
+.cfg-fast-note {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(168, 85, 247, 0.12);
+}
+
+/* ── Toolbar ─────────────────────────────────────────────── */
+.cfg-toolbar {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 180px auto;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.cfg-toolbar--roles {
+  grid-template-columns: minmax(240px, 1fr) 165px 165px auto;
+}
+
+/* Override Ant input/select heights inside toolbars */
+.cfg-toolbar .ant-input-affix-wrapper,
+.cfg-toolbar .ant-select-selector {
+  height: 40px !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--bg-input) !important;
+  border-color: var(--border) !important;
+}
+
+.cfg-toolbar .ant-input-affix-wrapper:hover,
+.cfg-toolbar .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: var(--primary) !important;
+}
+
+/* ── Quick-add row wrapper (scroll fix) ─────────────────── */
+.cfg-quick-row-wrap {
+  overflow-x: auto;
+  border: 1px dashed var(--primary-border);
+  border-radius: var(--radius-md);
+}
+
+.cfg-quick-row {
+  display: grid;
+  gap: var(--space-3);
+  align-items: center;
+  background: rgba(255, 255, 255, 0.02);
+  padding: var(--space-3);
+  min-width: max-content;
+}
+
+.cfg-quick-row--structure {
+  grid-template-columns: 160px minmax(180px, 1fr) minmax(220px, 1.4fr) 150px 38px;
+}
+
+.cfg-quick-row--roles {
+  grid-template-columns: 140px minmax(160px, 1fr) minmax(190px, 1.2fr) 160px 160px 38px;
+}
+
+/* Consistent height & style for inputs/selects inside quick-add row */
+.cfg-quick-row .ant-input,
+.cfg-quick-row .ant-input-affix-wrapper,
+.cfg-quick-row .ant-select-selector {
+  height: 38px !important;
+  background: var(--bg-input) !important;
+  border-color: var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+  font-size: 13px !important;
+}
+
+.cfg-quick-row .ant-input:focus,
+.cfg-quick-row .ant-input-affix-wrapper:focus-within {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 2px rgba(51, 89, 127, 0.18) !important;
+}
+
+.cfg-quick-row .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: var(--primary) !important;
+}
+
+.cfg-quick-row__add-btn {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 200ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.cfg-quick-row__add-btn:hover {
+  background: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+  transform: scale(1.08);
+}
+
+/* ── Table ───────────────────────────────────────────────── */
+.cfg-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.cfg-table {
+  min-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cfg-table__head,
+.cfg-table__row {
+  display: grid;
+  grid-template-columns: 150px minmax(180px, 1fr) minmax(220px, 1.4fr) 120px 132px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.cfg-table--roles .cfg-table__head,
+.cfg-table--roles .cfg-table__row {
+  min-width: 860px;
+  grid-template-columns: 110px minmax(140px, 0.9fr) minmax(180px, 1.1fr) minmax(140px, 0.9fr) minmax(140px, 0.9fr) 120px 132px;
+}
+
+.cfg-table__head {
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cfg-table__row {
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-top: 1px solid var(--border-subtle);
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.cfg-table__row:hover {
+  background: rgba(51, 89, 127, 0.1);
+  color: var(--text-primary);
+}
+
+.cfg-table__row strong {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ── Status badge ────────────────────────────────────────── */
+.cfg-status {
+  justify-self: start;
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.cfg-status--active {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.13);
+}
+
+.cfg-status--inactive {
+  color: #fb923c;
+  background: rgba(249, 115, 22, 0.13);
+}
+
+/* ── Status toggle (role panels) ─────────────────────────── */
+.cfg-status-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.cfg-table .ant-switch {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.cfg-table .ant-switch-checked {
+  background: var(--primary) !important;
+}
+
+/* ── Row action buttons ──────────────────────────────────── */
+.cfg-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cfg-icon-btn {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: var(--radius-md) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: var(--border) !important;
+  color: var(--text-secondary) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 220ms ease,
+    color 220ms ease,
+    background 220ms ease !important;
+}
+
+.cfg-icon-btn:hover {
+  transform: scale(1.12);
+  border-color: var(--primary) !important;
+  background: var(--primary-dim) !important;
+  color: var(--text-white) !important;
+}
+
+.cfg-icon-btn--danger:hover {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #f87171 !important;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1280px) {
+
+  .cfg-toolbar,
+  .cfg-toolbar--roles {
+    grid-template-columns: 1fr 1fr auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .cfg-panel__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cfg-panel__actions {
+    width: 100%;
+  }
+
+  .cfg-btn-primary,
+  .cfg-btn-secondary {
+    flex: 1;
+  }
+
+  .cfg-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cfg-toolbar,
+  .cfg-toolbar--roles {
+    grid-template-columns: 1fr;
+  }
+
+
+  .cfg-quick-row--structure,
+  .cfg-quick-row--roles {
+    grid-template-columns: 1fr;
+  }
+
+  .cfg-quick-row__add-btn {
+    width: 100% !important;
+    height: 38px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .cfg-panel {
+    padding: var(--space-4);
+  }
+}
+
+/* ── Table extras ────────────────────────────────────────── */
+.cfg-table__code {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  display: inline-block;
+  letter-spacing: 0.3px;
+}
+
+.cfg-table__desc {
+  color: var(--text-secondary);
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cfg-table__empty {
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Status select (inline in table) ────────────────────── */
+.cfg-status-select .ant-select-selector {
+  height: 26px !important;
+  padding: 0 8px !important;
+  border-radius: var(--radius-full) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+
+.cfg-status-select.ant-select .ant-select-selection-item {
+  line-height: 24px !important;
+}
+
+/* ── Status label (role panel toggle) ───────────────────── */
+.cfg-status-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cfg-status-label--active {
+  color: #22c55e;
+}
+
+.cfg-status-label--inactive {
+  color: #fb923c;
+}
+
+/* ── Modal ───────────────────────────────────────────────── */
+.cfg-modal .ant-modal-content {
+  background: var(--bg-card-alt) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6) !important;
+}
+
+.cfg-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding-bottom: var(--space-4) !important;
+}
+
+.cfg-modal .ant-modal-title {
+  color: var(--text-white) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+.cfg-modal .ant-modal-close {
+  color: var(--text-muted) !important;
+}
+
+.cfg-modal .ant-modal-close:hover {
+  color: var(--text-primary) !important;
+  background: var(--bg-hover) !important;
+}
+
+.cfg-modal .ant-modal-footer {
+  border-top: 1px solid var(--border) !important;
+  padding-top: var(--space-4) !important;
+}
+
+.cfg-modal .ant-btn-primary {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 600 !important;
+}
+
+.cfg-modal .ant-btn-primary:hover {
+  background: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+}
+
+.cfg-modal .ant-btn-default {
+  background: var(--bg-input) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.cfg-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+/* Responsive form grids */
+@media (max-width: 1100px) {
+  .cfg-form-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+
+  .cfg-form-grid,
+  .cfg-form-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMPANY & FARM TAB STYLES (Pink & Cyan dashboard themes)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Company Panel */
+.cfg-panel--company::after {
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.7), transparent) !important;
+}
+
+.cfg-panel--company .cfg-panel__kicker {
+  color: #f472b6 !important;
+}
+
+.cfg-panel--company .cfg-btn-primary {
+  background: linear-gradient(135deg, #ec4899, #9333ea) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(236, 72, 153, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.cfg-panel--company .cfg-btn-primary:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+.cfg-panel--company .cfg-field .ant-input-affix-wrapper:focus-within,
+.cfg-panel--company .cfg-field .ant-input:focus {
+  border-color: #ec4899 !important;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.25) !important;
+}
+
+.cfg-panel--company .cfg-note {
+  border-color: rgba(236, 72, 153, 0.3) !important;
+  background: rgba(236, 72, 153, 0.08) !important;
+}
+
+.cfg-panel__header-icon--company {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #ec4899, #9333ea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+}
+
+/* Farm Panel */
+.cfg-panel--farm::after {
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.7), transparent) !important;
+}
+
+.cfg-panel--farm .cfg-panel__kicker {
+  color: #22d3ee !important;
+}
+
+.cfg-panel--farm .cfg-btn-primary {
+  background: linear-gradient(135deg, #06b6d4, #0e7490) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.cfg-panel--farm .cfg-btn-primary:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+.cfg-panel--farm .cfg-field .ant-input-affix-wrapper:focus-within,
+.cfg-panel--farm .cfg-field .ant-input:focus {
+  border-color: #06b6d4 !important;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25) !important;
+}
+
+.cfg-panel--farm .cfg-note {
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  background: rgba(6, 182, 212, 0.08) !important;
+}
+
+.cfg-panel__header-icon--farm {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #06b6d4, #0e7490);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+}
+
+/* ── Company & Farm Card Layout ── */
+.co-grid,
+.fm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.co-card,
+.fm-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.co-card:hover {
+  border-color: rgba(236, 72, 153, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.2);
+}
+
+.fm-card:hover {
+  border-color: rgba(6, 182, 212, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.2);
+}
+
+.co-card__top,
+.fm-card__top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.co-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #ec4899, #9333ea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.45);
+}
+
+.fm-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #06b6d4, #0e7490);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.45);
+}
+
+.co-card__identity,
+.fm-card__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.co-card__name,
+.fm-card__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.co-card__kicker,
+.fm-card__kicker {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  display: inline-block;
+  letter-spacing: 0.3px;
+  align-self: flex-start;
+}
+
+.co-card__menu,
+.fm-card__menu {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.co-card__body,
+.fm-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.co-card__field,
+.fm-card__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-width: 0;
+}
+
+.co-card__field .anticon,
+.fm-card__field .anticon {
+  color: var(--text-muted);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.co-card__field span,
+.fm-card__field span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AREA TAB STYLES (Orange dashboard theme)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Area Panel */
+.cfg-panel--area::after {
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.7), transparent) !important;
+}
+
+.cfg-panel--area .cfg-panel__kicker {
+  color: #fb923c !important;
+}
+
+.cfg-panel--area .cfg-btn-primary {
+  background: linear-gradient(135deg, #f97316, #dc2626) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.cfg-panel--area .cfg-btn-primary:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+.cfg-panel--area .cfg-field .ant-input-affix-wrapper:focus-within,
+.cfg-panel--area .cfg-field .ant-input:focus,
+.cfg-panel--area .cfg-field .ant-select-focused .ant-select-selector {
+  border-color: #f97316 !important;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25) !important;
+}
+
+.cfg-panel--area .cfg-note {
+  border-color: rgba(249, 115, 22, 0.3) !important;
+  background: rgba(249, 115, 22, 0.08) !important;
+}
+
+.cfg-panel__header-icon--area {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);
+}
+
+/* Area Card Layout */
+.ar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-4);
+}
+
+.ar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.ar-card:hover {
+  border-color: rgba(249, 115, 22, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+}
+
+.ar-card__top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.ar-card__icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #f97316, #dc2626);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.45);
+}
+
+.ar-card__identity {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ar-card__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ar-card__kicker {
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2px 7px;
+  display: inline-block;
+  letter-spacing: 0.3px;
+  align-self: flex-start;
+}
+
+.ar-card__menu {
+  display: flex;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.ar-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.ar-card__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--text-secondary);
+  min-width: 0;
+}
+
+.ar-card__field .anticon {
+  color: var(--text-muted);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.ar-card__field span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FUNCTION GROUPS TAB STYLES (Purple dashboard theme)
+   ═══════════════════════════════════════════════════════════ */
+
+/* Function Group Panel */
+.cfg-panel--group::after {
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.7), transparent) !important;
+}
+
+.cfg-panel--group .cfg-panel__kicker {
+  color: #a78bfa !important;
+}
+
+.cfg-panel--group .cfg-btn-primary {
+  background: linear-gradient(135deg, #7c3aed, #4338ca) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45) !important;
+  transition: opacity 200ms ease, transform 150ms ease !important;
+}
+
+.cfg-panel--group .cfg-btn-primary:hover {
+  opacity: 0.88 !important;
+  transform: translateY(-1px) !important;
+}
+
+.cfg-panel--group .cfg-field .ant-input-affix-wrapper:focus-within,
+.cfg-panel--group .cfg-field .ant-input:focus,
+.cfg-panel--group .cfg-field .ant-select-focused .ant-select-selector {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25) !important;
+}
+
+.cfg-panel--group .cfg-note {
+  border-color: rgba(124, 58, 237, 0.3) !important;
+  background: rgba(124, 58, 237, 0.08) !important;
+}
+
+.cfg-panel__header-icon--group {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #7c3aed, #4338ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+}

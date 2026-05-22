@@ -1,13 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import './StatusCard.css';
 
-const roleData = [
-  { name: 'Masters', value: 3, color: '#ec4899' },
-  { name: 'Admins', value: 5, color: '#a855f7' },
-  { name: 'Workers', value: 42, color: '#06b6d4' },
-  { name: 'Support', value: 12, color: '#22c55e' },
-];
-
 interface TooltipProps {
   active?: boolean;
   payload?: Array<{ name: string; value: number; payload: { color: string } }>;
@@ -25,7 +18,23 @@ function DonutTooltip({ active, payload }: TooltipProps) {
   );
 }
 
-export default function StatusCard() {
+interface StatusCardProps {
+  data?: {
+    farmMasters: number;
+    farmAdmins: number;
+    farmWorkers: number;
+    supportWorkers: number;
+  };
+}
+
+export default function StatusCard({ data }: StatusCardProps) {
+  const roleData = [
+    { name: 'Masters', value: data?.farmMasters ?? 3, color: '#ec4899' },
+    { name: 'Admins', value: data?.farmAdmins ?? 5, color: '#a855f7' },
+    { name: 'Workers', value: data?.farmWorkers ?? 42, color: '#06b6d4' },
+    { name: 'Support', value: data?.supportWorkers ?? 12, color: '#22c55e' },
+  ];
+
   const total = roleData.reduce((acc, d) => acc + d.value, 0);
 
   return (

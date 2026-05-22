@@ -1,5 +1,16 @@
-import PlaceholderPage from '../PlaceholderPage';
+import ConfigTabs from '../../components/Configuration/ConfigTabs';
+import { ConfigurationProvider } from '../../Contexts/ConfigurationContext';
+import DashboardLayout from '../../components/Layout/DashboardLayout';
+import './ConfigurationPage.css';
 
 export default function ConfigurationPage() {
-  return <PlaceholderPage title="Configuration" description="Configure your farm settings, sensor integrations, and system preferences." />;
+  return (
+    <ConfigurationProvider>
+      <DashboardLayout>
+        <section className="configuration-shell">
+          <ConfigTabs />
+        </section>
+      </DashboardLayout>
+    </ConfigurationProvider>
+  );
 }

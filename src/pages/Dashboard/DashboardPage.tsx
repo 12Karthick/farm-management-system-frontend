@@ -15,19 +15,29 @@ import OverviewCard from '../../components/Dashboard/OverviewCard';
 import StatusCard from '../../components/Dashboard/StatusCard';
 import WeeklyActivityCard from '../../components/Dashboard/WeeklyActivityCard';
 import RecentUpdates from '../../components/Dashboard/RecentUpdates';
+import { useGetDashboardSummaryQuery } from '../../api/endpoints/dashboardApi';
 import './DashboardPage.css';
 
-
-
-// Personnel role stat cards
-const personnelStats = [
-  { id: 'farm-masters', label: 'Farm Masters', value: 3, icon: <UserSwitchOutlined />, iconColor: '#ec4899' },
-  { id: 'farm-admins', label: 'Farm Admins', value: 5, icon: <TeamOutlined />, iconColor: '#7c3aed' },
-  { id: 'farm-workers', label: 'Farm Workers', value: 42, icon: <SolutionOutlined />, iconColor: '#06b6d4' },
-  { id: 'support-workers', label: 'Support Workers', value: 12, icon: <CustomerServiceOutlined />, iconColor: '#22c55e' },
-];
-
 export default function DashboardPage() {
+  const { data: dashboardData, isLoading } = useGetDashboardSummaryQuery();
+
+  const personnelStats = [
+    { id: 'farm-masters', label: 'Farm Masters', value: dashboardData?.farmMasters ?? 3, icon: <UserSwitchOutlined />, iconColor: '#ec4899' },
+    { id: 'farm-admins', label: 'Farm Admins', value: dashboardData?.farmAdmins ?? 5, icon: <TeamOutlined />, iconColor: '#7c3aed' },
+    { id: 'farm-workers', label: 'Farm Workers', value: dashboardData?.farmWorkers ?? 42, icon: <SolutionOutlined />, iconColor: '#06b6d4' },
+    { id: 'support-workers', label: 'Support Workers', value: dashboardData?.supportWorkers ?? 12, icon: <CustomerServiceOutlined />, iconColor: '#22c55e' },
+  ];
+
+  if (isLoading) {
+    return (
+      <DashboardLayout>
+        <div className="dashboard__loading" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
+          <span style={{ fontSize: '18px', color: 'var(--text-muted)' }}>Loading AgriTech Dashboard...</span>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout>
       {/* Date Range Filter */}
@@ -45,38 +55,30 @@ export default function DashboardPage() {
         <SummaryCard
           id="company"
           label="Company"
-          title="AgriTech Solutions"
-          // subtitle="Active Organization"
+          // title={dashboardData?.companyName || "AgriTech Solutions"}
+          title={dashboardData?.totalCompanies.toString() || "0"}
+          subtitle={`Companies Registered`}
           icon={<BankOutlined />}
           variant="pink"
-          showExternalLink
+          // showExternalLink
           animationDelay={0}
         />
         <SummaryCard
           id="farm"
           label="Farm"
-          title="Green Valley Farm"
-          // subtitle="8 Active Areas"
+          // title={dashboardData?.farmName || "Green Valley Farm"}
+          title={dashboardData?.totalFarms.toString() || "0"}
+          subtitle={`Farms Registered`}
           icon={<EnvironmentOutlined />}
           variant="cyan"
-          showExternalLink
+          // showExternalLink
           animationDelay={60}
-        />
-        <SummaryCard
-          id="total-personnel"
-          label="Total Personnel"
-          title="62"
-          // subtitle="+12% from last month"
-          icon={<TeamOutlined />}
-          variant="teal"
-          // trend="+12% from last month"
-          animationDelay={120}
         />
         <SummaryCard
           id="function-groups"
           label="Function Groups"
-          title="15"
-          // subtitle="Configured"
+          title={String(dashboardData?.totalFunctionGroups ?? 15)}
+          subtitle="Configured Groups"
           icon={<AppstoreOutlined />}
           variant="purple"
           animationDelay={180}
@@ -84,12 +86,21 @@ export default function DashboardPage() {
         <SummaryCard
           id="active-areas"
           label="Active Areas"
-          title="8"
-          // subtitle="Locations"
+          title={String(dashboardData?.totalAreas ?? 8)}
+          subtitle="Physical Areas"
           icon={<PushpinOutlined />}
           variant="orange"
-          showExternalLink
+          // showExternalLink
           animationDelay={240}
+        />
+        <SummaryCard
+          id="total-personnel"
+          label="Total Personnel"
+          title={String(dashboardData?.totalPersonnel ?? 62)}
+          subtitle="Personnel Registered"
+          icon={<TeamOutlined />}
+          variant="teal"
+          animationDelay={120}
         />
       </section>
 
@@ -113,8 +124,8 @@ export default function DashboardPage() {
 
       {/* Charts row */}
       <section className="dashboard__charts-row" aria-label="Analytics charts">
-        <StatusCard />
-        <OverviewCard />
+        <StatusCard data={dashboardData} />
+        <OverviewCard trend={dashboardData?.personnelGrowthTrend} />
       </section>
 
       {/* Weekly activity + Recent updates */}

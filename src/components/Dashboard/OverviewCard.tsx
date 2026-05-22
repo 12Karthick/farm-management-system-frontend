@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   AreaChart,
   Area,
@@ -8,14 +9,6 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import './OverviewCard.css';
-
-const data = [
-  { month: 'Jan', total: 45 },
-  { month: 'Feb', total: 48 },
-  { month: 'Mar', total: 50 },
-  { month: 'Apr', total: 55 },
-  { month: 'May', total: 62 },
-];
 
 interface TooltipProps {
   active?: boolean;
@@ -33,13 +26,29 @@ function CustomTooltip({ active, payload, label }: TooltipProps) {
   );
 }
 
-export default function OverviewCard() {
+interface OverviewCardProps {
+  trend?: { month: string; count: number }[];
+}
+
+export default function OverviewCard({ trend }: OverviewCardProps) {
+  const chartData = useMemo(() => {
+    if (!trend || trend.length === 0) {
+      return [
+        { month: 'Jan', total: 45 },
+        { month: 'Feb', total: 48 },
+        { month: 'Mar', total: 50 },
+        { month: 'Apr', total: 55 },
+        { month: 'May', total: 62 },
+      ];
+    }
+    return trend.map((t) => ({ month: t.month, total: t.count }));
+  }, [trend]);
   return (
     <div className="overview-card" id="personnel-growth-chart">
       <h3 className="overview-card__title">Personnel Growth Trend</h3>
       <div className="overview-card__chart">
         <ResponsiveContainer width="100%" height={220}>
-          <AreaChart data={data} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+          <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
             <defs>
               <linearGradient id="gradGrowth" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#06b6d4" stopOpacity={0.4} />
